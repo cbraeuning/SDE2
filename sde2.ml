@@ -46,4 +46,21 @@ let rec cell_products_rec ([cell1;cell2]) =
 
 let cell_products ([cell1;cell2]) = cell_products_rec ([cell1;cell2]);;
 
+(**
+Prototype: form_row1_cell(element,productions)
+Input(s): tuple of single terminal element, productions list
+Returned Value: corresponding cell in first row of CYK table
+Side Effects: none
+Signature: val form_row1_cell : ’a * ’a list list -> ’a list = <fun>
+Notes: Forms row 1 cells of CYK table as a special case.
+*)
+let rec form_row1_cell_rec (element,productions) =
+	if productions == [] || element == "" then
+		[]
+	else if (String.get (List.nth (List.nth productions 0) 1) 0) == (String.get element 0) then
+		[List.nth (List.nth productions 0) 0]
+	else
+		form_row1_cell (element, (List.tl productions));;
+
+let form_row1_cell (element,productions) = form_row1_cell_rec (element,productions);;
 
