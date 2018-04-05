@@ -69,5 +69,31 @@ let rec form_row1_cell_rec (element,productions) =
 
 let form_row1_cell (element,productions) = form_row1_cell_rec (element,productions);;
 
+(**
+Prototype: equiv(ca, cb)
+Inputs: tuple of 2 cells
+Returned Value: true or false
+Side Effects: none
+Signature: val equiv : ’a list * ’a list -> bool = <fun>
+*)
+let rec is_member(a,cb) = 
+	if cb == [] then
+		false
+	else if (String.length(a) == String.length(List.hd cb)) && ((Char.code(String.get a 0)) == (Char.code(String.get (List.hd cb) 0))) then
+		true
+	else is_member(a, List.tl cb);;
+
+let rec equiv_rec(ca,cb) =
+	if ca == [] && cb == [] then
+		true
+	else if ca == [] || cb == [] then
+		false
+	else 
+		equiv_rec( List.tl ca, List.tl cb);;
+
+
+
+let equiv (ca, cb) = equiv_rec(ca, cb);;
+	
 
 
