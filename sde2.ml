@@ -15,6 +15,21 @@ let productions = [prod1;prod2;prod3;prod4];;
 (* string to parse *)
 let astring = ["a"; "a"; "b"; "b"];;
 
+let tablebook  =
+[[["A"]; ["A"]; ["B"; "C"]; ["B"; "C"]];
+[["C"]; ["S"; "A"]; ["S"; "B"; "A"]]; [["C"; "A"]; ["C"; "S"; "A"]];
+[["C"; "B"; "S"; "A"]]];;
+
+let tablebook2 =
+[[["A"]; ["A"]; ["B"; "C"]; ["B"; "C"]];
+[["C"]; ["A"; "S"]; ["B"; "A"; "S"]]; [["C"; "A"]; ["A"; "S"; "C"]];
+[["S"; "B"; "C"; "A"]]];;
+
+let tablebook3 =
+[[["A"]; ["A"]; ["B"; "C"]; ["B"; "C"]];
+[["C"]; ["A"; "G"]; ["B"; "A"; "S"]]; [["C"; "A"]; ["A"; "S"; "C"]];
+[["S"; "B"; "C"; "A"]]];;
+
 (**
 Prototype: get_table_values_cell([i;j],table)
 Input(s): tuple of ([<column>;<row>], table)
@@ -138,4 +153,25 @@ let row_equivalent (rowA,rowB) =
 	if (List.length rowA) != (List.length rowB) then
 		false
 	else row_equivalent_rec (rowA, rowB);;
+
+(**
+Prototype: table_equivalent(tableA,tableB)
+Inputs: tuple of 2 tables
+Returned Value: true or false
+Side Effects: none
+Signature: val table_equivalent :
+’a list list list * ’a list list list -> bool = <fun>
+*)
+let rec table_equivalent_rec (tableA,tableB) =
+	if (tableA == []) && (tableB == []) then
+		true
+	else if row_equivalent_rec(List.hd tableA, List.hd tableB) == false then
+		false
+	else table_equivalent_rec(List.tl tableA, List.tl tableB);;
+
+let table_equivalent (tableA,tableB) = 
+	if (List.length tableA) != (List.length tableB) then
+		false
+	else table_equivalent_rec (tableA,tableB);;
+
 
