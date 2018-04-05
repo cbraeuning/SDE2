@@ -69,21 +69,6 @@ let rec form_row1_cell_rec (element,productions) =
 
 let form_row1_cell (element,productions) = form_row1_cell_rec (element,productions);;
 
-(** idk if this will be useful but meh **)
-let rec is_member_str(a,cb) = 
-	if cb == [] then
-		false
-	else if (String.length(a) == String.length(List.hd cb)) && ((Char.code(String.get a 0)) == (Char.code(String.get (List.hd cb) 0))) then
-		true
-	else is_member(a, List.tl cb);;
-
-let rec is_member_int(a,cb) = 
-	if cb == [] then
-		false
-	else if  a == (List.hd cb) then
-		true
-	else is_member_int(a, List.tl cb);;
-
 (**
 Prototype: equiv(ca, cb)
 Inputs: tuple of 2 cells
@@ -91,6 +76,13 @@ Returned Value: true or false
 Side Effects: none
 Signature: val equiv : ’a list * ’a list -> bool = <fun>
 *)
+let rec is_member_int(a,cb) = 
+	if cb == [] then
+		false
+	else if  a == (List.hd cb) then
+		true
+	else is_member_int(a, List.tl cb);;
+
 let rec equiv_rec(ca,cb) =
 	if (ca == []) then
 		true
@@ -105,6 +97,45 @@ let equiv (ca, cb) =
 	else if (ca == [] && cb == []) then
 		true
 	else equiv_rec(ca, cb);;
-	
 
+(**
+Prototype: row_equivalent(rowA,rowB)
+Inputs: tuple of 2 rows
+Returned Value: true or false
+Side Effects: none
+Signature: val row_equivalent : ’a list list * ’a list list -> bool = <fun>
+**)
+let rec is_member_str(a,cb) = 
+	if cb == [] then
+		false
+	else if (String.length(a) == String.length(List.hd cb)) && ((Char.code(String.get a 0)) == (Char.code(String.get (List.hd cb) 0))) then
+		true
+	else is_member(a, List.tl cb);;
+	
+let rec equiv_str_rec(ca,cb) =
+	if (ca == []) then
+		true
+	else if (is_member_str(List.hd ca, cb) == false) then
+		false
+	else 
+		equiv_str_rec( List.tl ca, cb);;
+
+let equiv_str (ca, cb) = 
+	if(List.length(ca) != List.length(cb)) then
+		false
+	else if (ca == [] && cb == []) then
+		true
+	else equiv_str_rec(ca, cb);;
+
+let rec row_equivalent_rec (rowA,rowB) =
+	if rowA == [] && rowB == [] then
+		true 
+	else if equiv_str(List.hd rowA, List.hd rowB) == false then
+		false
+	else row_equivalent_rec(List.tl rowA, List.tl rowB);;
+
+let row_equivalent (rowA,rowB) =
+	if (List.length rowA) != (List.length rowB) then
+		false
+	else row_equivalent_rec (rowA, rowB);;
 
