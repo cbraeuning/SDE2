@@ -69,6 +69,21 @@ let rec form_row1_cell_rec (element,productions) =
 
 let form_row1_cell (element,productions) = form_row1_cell_rec (element,productions);;
 
+(** idk if this will be useful but meh **)
+let rec is_member_str(a,cb) = 
+	if cb == [] then
+		false
+	else if (String.length(a) == String.length(List.hd cb)) && ((Char.code(String.get a 0)) == (Char.code(String.get (List.hd cb) 0))) then
+		true
+	else is_member(a, List.tl cb);;
+
+let rec is_member_int(a,cb) = 
+	if cb == [] then
+		false
+	else if  a == (List.hd cb) then
+		true
+	else is_member_int(a, List.tl cb);;
+
 (**
 Prototype: equiv(ca, cb)
 Inputs: tuple of 2 cells
@@ -76,24 +91,20 @@ Returned Value: true or false
 Side Effects: none
 Signature: val equiv : ’a list * ’a list -> bool = <fun>
 *)
-let rec is_member(a,cb) = 
-	if cb == [] then
-		false
-	else if (String.length(a) == String.length(List.hd cb)) && ((Char.code(String.get a 0)) == (Char.code(String.get (List.hd cb) 0))) then
-		true
-	else is_member(a, List.tl cb);;
-
 let rec equiv_rec(ca,cb) =
-	if ca == [] && cb == [] then
+	if (ca == []) then
 		true
-	else if ca == [] || cb == [] then
+	else if (is_member_int(List.hd ca, cb) == false) then
 		false
 	else 
-		equiv_rec( List.tl ca, List.tl cb);;
+		equiv_rec( List.tl ca, cb);;
 
-
-
-let equiv (ca, cb) = equiv_rec(ca, cb);;
+let equiv (ca, cb) = 
+	if(List.length(ca) != List.length(cb)) then
+		false
+	else if (ca == [] && cb == []) then
+		true
+	else equiv_rec(ca, cb);;
 	
 
 
