@@ -2,15 +2,16 @@
 %% SDE1	- CYK Parse Tables *)
 
 (* all productions (in CNF) here let is used for illustration *)
-(* S -> AB *)
 let prod1 = ["S"; "AB"];; (* Note: NOT ["S";"A";"B"] *)
-(* A -> a *)
 let prod2 = ["A"; "a"];;
-(* B -> b *)
 let prod3 = ["B"; "b"];;
-(* C -> b *)
 let prod4 = ["C"; "b"];;
 (* list of all producitons *)
+let prodb1 = ["s"; "AB"];;
+let prodb2 = ["S"; "A"];;
+let prodb3 = ["AB"; "CD"];;
+let prodb4 = ["s"; "cAB"];;
+
 let productions = [prod1;prod2;prod3;prod4];;
 (* string to parse *)
 let astring = ["a"; "a"; "b"; "b"];;
@@ -174,4 +175,32 @@ let table_equivalent (tableA,tableB) =
 		false
 	else table_equivalent_rec (tableA,tableB);;
 
+(**
+Prototype: valid_production production
+Inputs: a list
+Returned Value: true or false
+Side Effects: none
+Signature: val valid_production : string list -> bool = <fun>
+Notes: true if production is valid format and CNF
+**)
+let isUpperCase (a) = 
+	if ((Char.code a) < 91) && ((Char.code a) > 64) then 
+		true
+	else false;;
+
+let isLowerCase (a) = 
+	if ((Char.code a) < 123) && ((Char.code a) > 96) then
+		true
+	else false;;
+
+let valid_production production = 
+	if List.length production != 2 then
+		false
+	else if String.length (List.hd production) != 1 || isLowerCase (String.get (List.hd production) 0) then
+		false
+	else if (String.length (List.nth production 1) == 1) && (isLowerCase (String.get (List.nth production 1) 0)) then
+		true
+	else if (String.length (List.nth production 1) == 2) && (isUpperCase (String.get (List.nth production 1) 0)) && (isUpperCase (String.get (List.nth production 1) 1)) then
+		true
+	else false;;
 
