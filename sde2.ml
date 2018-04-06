@@ -204,3 +204,18 @@ let valid_production production =
 		true
 	else false;;
 
+(**
+Prototype: valid_production_list productionList
+Inputs: list of productions
+Returned Value: true or false
+Side Effects: none
+Signature: val valid_production_list : string list list -> bool = <fun>
+*)
+let rec valid_production_list_rec productionList = 
+	if productionList == [] then
+		true
+	else if valid_production (List.hd productionList) == false then
+		false
+	else valid_production_list_rec (List.tl productionList);;
+
+let valid_production_list productionList = valid_production_list_rec productionList;;
