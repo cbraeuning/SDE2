@@ -126,7 +126,7 @@ let rec is_member_str(a,cb) =
 		false
 	else if (String.length(a) == String.length(List.hd cb)) && ((Char.code(String.get a 0)) == (Char.code(String.get (List.hd cb) 0))) then
 		true
-	else is_member(a, List.tl cb);;
+	else is_member_str(a, List.tl cb);;
 	
 let rec equiv_str_rec(ca,cb) =
 	if (ca == []) then
