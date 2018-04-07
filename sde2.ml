@@ -38,9 +38,8 @@ Returned Value: cell with string values
 Side Effects: none
 Signature: val get_table_values_cell : int list * ’a list list -> ’a = <fun>
 *)
-let get_table_values_cell = function
-	([i;j],table) -> List.nth (List.nth table (j-1)) (i-1)
-	| (_) -> [];;
+let get_table_values_cell(ndx, table) =
+	List.nth (List.nth table ((List.nth ndx 1)-1)) (((List.nth ndx 0))-1)
 
 (**
 Prototype: cell_products [cell1;cell2]
