@@ -162,7 +162,7 @@ Returned Value: true or false
 Side Effects: none
 Signature: val table_equivalent :
 ’a list list list * ’a list list list -> bool = <fun>
-*)
+**)
 let rec table_equivalent_rec (tableA,tableB) =
 	if (tableA == []) && (tableB == []) then
 		true
