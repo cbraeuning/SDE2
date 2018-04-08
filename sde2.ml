@@ -12,6 +12,11 @@ let prodb2 = ["S"; "A"];;
 let prodb3 = ["AB"; "CD"];;
 let prodb4 = ["s"; "cAB"];;
 
+let row1 = [["A"]; ["A"]; ["B"; "C"]; ["B"; "C"]];;
+let row1mod = [["A"]; ["A"]; ["C"; "B"]; ["C"; "B"]];;
+let row1mod2 = [["A"]; ["A"]; ["C"; "C"]; ["B"; "B"]];;
+let row1mod3 = [["A"]; ["B"; "C"]; ["A"]; ["B"; "C"]];;
+
 let productions = [prod1;prod2;prod3;prod4];;
 (* string to parse *)
 let astring = ["a"; "a"; "b"; "b"];;
@@ -91,17 +96,17 @@ Returned Value: true or false
 Side Effects: none
 Signature: val equiv : ’a list * ’a list -> bool = <fun>
 *)
-let rec is_member_int(a,cb) = 
-	if cb == [] then
+let rec is_member(a,cb) = 
+	if cb = [] then
 		false
-	else if  a == (List.hd cb) then
+	else if  a = (List.hd cb) then
 		true
 	else is_member_int(a, List.tl cb);;
 
 let rec equiv_rec(ca,cb) =
-	if (ca == []) then
+	if (ca = []) then
 		true
-	else if (is_member_int(List.hd ca, cb) == false) then
+	else if (is_member(List.hd ca, cb) = false) then
 		false
 	else 
 		equiv_rec( List.tl ca, cb);;
@@ -109,7 +114,7 @@ let rec equiv_rec(ca,cb) =
 let equiv (ca, cb) = 
 	if(List.length(ca) != List.length(cb)) then
 		false
-	else if (ca == [] && cb == []) then
+	else if (ca = [] && cb = []) then
 		true
 	else equiv_rec(ca, cb);;
 
@@ -123,7 +128,7 @@ Signature: val row_equivalent : ’a list list * ’a list list -> bool = <fun>
 let rec is_member_str(a,cb) = 
 	if cb == [] then
 		false
-	else if (String.length(a) == String.length(List.hd cb)) && ((Char.code(String.get a 0)) == (Char.code(String.get (List.hd cb) 0))) then
+	else if a = List.hd cb then
 		true
 	else is_member_str(a, List.tl cb);;
 	
@@ -143,7 +148,7 @@ let equiv_str (ca, cb) =
 	else equiv_str_rec(ca, cb);;
 
 let rec row_equivalent_rec (rowA,rowB) =
-	if rowA == [] && rowB == [] then
+	if rowA = [] && rowB = [] then
 		true 
 	else if equiv_str(List.hd rowA, List.hd rowB) == false then
 		false
