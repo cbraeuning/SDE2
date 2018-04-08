@@ -77,7 +77,7 @@ Notes: Forms row 1 cells of CYK table as a special case.
 let rec form_row1_cell_rec (element,productions) =
 	if productions == [] then
 		[]
-	else if (List.nth (List.nth productions 0) 1) == element then
+	else if (List.nth (List.nth productions 0) 1) = element then
 		List.append ([List.nth (List.nth productions 0) 0]) (form_row1_cell_rec (element, (List.tl productions)))
 	else
 		form_row1_cell_rec (element, (List.tl productions));;
