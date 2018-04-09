@@ -2,15 +2,15 @@
 %% SDE1	- CYK Parse Tables *)
 
 (* all productions (in CNF) here let is used for illustration *)
-let prod1 = ["S"; "AB"];; (* Note: NOT ["S";"A";"B"] *)
-let prod2 = ["A"; "a"];;
-let prod3 = ["B"; "b"];;
-let prod4 = ["C"; "b"];;
+let prod1 = ["S"; "AC"];;
+let prod2 = ["A"; "b"];;
+let prod3 = ["B"; "c"];;
+let prod4 = ["C"; "a"];;
 (* list of all producitons *)
-let prodb1 = ["s"; "AB"];;
-let prodb2 = ["S"; "A"];;
-let prodb3 = ["AB"; "CD"];;
-let prodb4 = ["s"; "cAB"];;
+let prodb1 = ["s"; "AA"];;
+let prodb2 = ["S"; "B"];;
+let prodb3 = ["ABC"; "CD"];;
+let prodb4 = ["s"; "Caa"];;
 
 let prods1 = [prod1;prod2;prod3;prod4];;
 let prods2 = [prod1];;
@@ -18,29 +18,29 @@ let prods3= [prod1;prod2;prod3;prodb4];;
 let prods4 = [prod1;prod2;prodb3;prod4];;
 let prods5 = [prod1;prodb2;prod3;prod4];;
 
-let row1 = [["A"]; ["A"]; ["B"; "C"]; ["B"; "C"]];;
-let row1mod = [["A"]; ["A"]; ["C"; "B"]; ["C"; "B"]];;
-let row1mod2 = [["A"]; ["A"]; ["C"; "C"]; ["B"; "B"]];;
-let row1mod3 = [["A"]; ["B"; "C"]; ["A"]; ["B"; "C"]];;
+let row1 = [["C"]; ["C"]; ["A"; "B"]; ["A"; "B"]];;
+let row1mod = [["C"]; ["C"]; ["B"; "A"]; ["B"; "A"]];;
+let row1mod2 = [["C"]; ["C"]; ["B"; "B"]; ["A"; "A"]];;
+let row1mod3 = [["C"]; ["A"; "B"]; ["C"]; ["A"; "B"]];;
 
 let productions = [prod1;prod2;prod3;prod4];;
 (* string to parse *)
-let astring = ["a"; "a"; "b"; "b"];;
+let astring = ["a"; "c"; "b"; "e"];;
 
 let tablebook  =
-[[["A"]; ["A"]; ["B"; "C"]; ["B"; "C"]];
-[["C"]; ["S"; "A"]; ["S"; "B"; "A"]]; [["C"; "A"]; ["C"; "S"; "A"]];
-[["C"; "B"; "S"; "A"]]];;
+[[["C"]; ["C"]; ["A"; "B"]; ["A"; "B"]];
+[["B"]; ["S"; "C"]; ["S"; "A"; "C"]]; [["B"; "C"]; ["B"; "S"; "C"]];
+[["B"; "A"; "S"; "C"]]];;
 
 let tablebook2 =
-[[["A"]; ["A"]; ["B"; "C"]; ["B"; "C"]];
-[["C"]; ["A"; "S"]; ["B"; "A"; "S"]]; [["C"; "A"]; ["A"; "S"; "C"]];
-[["S"; "B"; "C"; "A"]]];;
+[[["C"]; ["C"]; ["A"; "B"]; ["A"; "B"]];
+[["B"]; ["C"; "S"]; ["A"; "C"; "S"]]; [["B"; "C"]; ["C"; "S"; "B"]];
+[["S"; "A"; "B"; "C"]]];;
 
 let tablebook3 =
-[[["A"]; ["A"]; ["B"; "C"]; ["B"; "C"]];
-[["C"]; ["A"; "G"]; ["B"; "A"; "S"]]; [["C"; "A"]; ["A"; "S"; "C"]];
-[["S"; "B"; "C"; "A"]]];;
+[[["C"]; ["C"]; ["A"; "B"]; ["A"; "B"]];
+[["B"]; ["C"; "G"]; ["A"; "C"; "S"]]; [["B"; "C"]; ["C"; "S"; "B"]];
+[["S"; "A"; "B"; "A"]]];;
 
 (**
 Prototype: get_table_values_cell([i;j],table)
