@@ -1,0 +1,101 @@
+cbraeun@apollo01:~/ProgSys/SDE2$ ledit ocaml
+        OCaml version 4.01.0
+
+# #use "sde2.caml";;
+val prod1 : string list = ["S"; "AC"]
+val prod2 : string list = ["A"; "b"]
+val prod3 : string list = ["B"; "c"]
+val prod4 : string list = ["C"; "a"]
+val prodb1 : string list = ["s"; "AA"]
+val prodb2 : string list = ["S"; "B"]
+val prodb3 : string list = ["ABC"; "CD"]
+val prodb4 : string list = ["s"; "Caa"]
+val sample_table : string list list list =
+  [[["22"]; ["12"]; ["31"]; ["14"]]; [["21"]; ["23"]; ["41"]];
+   [["11"]; ["34"]]; [["13"]]]
+val prods1 : string list list =
+  [["S"; "AC"]; ["A"; "b"]; ["B"; "c"]; ["C"; "a"]]
+val prods2 : string list list = [["S"; "AC"]]
+val prods3 : string list list =
+  [["S"; "AC"]; ["A"; "b"]; ["B"; "c"]; ["s"; "Caa"]]
+val prods4 : string list list =
+  [["S"; "AC"]; ["A"; "b"]; ["ABC"; "CD"]; ["C"; "a"]]
+val prods5 : string list list =
+  [["S"; "AC"]; ["S"; "B"]; ["B"; "c"]; ["C"; "a"]]
+val row1 : string list list = [["C"]; ["C"]; ["A"; "B"]; ["A"; "B"]]
+val row1mod : string list list = [["C"]; ["C"]; ["B"; "A"]; ["B"; "A"]]
+val row1mod2 : string list list = [["C"]; ["C"]; ["B"; "B"]; ["A"; "A"]]
+val row1mod3 : string list list = [["C"]; ["A"; "B"]; ["C"]; ["A"; "B"]]
+val productions : string list list =
+  [["S"; "AC"]; ["A"; "b"]; ["B"; "c"]; ["C"; "a"]]
+val astring : string list = ["a"; "c"; "b"; "e"]
+val tablebook : string list list list =
+  [[["C"]; ["C"]; ["A"; "B"]; ["A"; "B"]];
+   [["B"]; ["S"; "C"]; ["S"; "A"; "C"]]; [["B"; "C"]; ["B"; "S"; "C"]];
+   [["B"; "A"; "S"; "C"]]]
+val tablebook2 : string list list list =
+  [[["C"]; ["C"]; ["A"; "B"]; ["A"; "B"]];
+   [["B"]; ["C"; "S"]; ["A"; "C"; "S"]]; [["B"; "C"]; ["C"; "S"; "B"]];
+   [["S"; "A"; "B"; "C"]]]
+val tablebook3 : string list list list =
+  [[["C"]; ["C"]; ["A"; "B"]; ["A"; "B"]];
+   [["B"]; ["C"; "G"]; ["A"; "C"; "S"]]; [["B"; "C"]; ["C"; "S"; "B"]];
+   [["S"; "A"; "B"; "A"]]]
+val get_table_values_cell : int list * 'a list list -> 'a = <fun>
+val cell_products_helper : string * string list -> string list = <fun>
+val cell_products_rec : string list list -> string list = <fun>
+val cell_products : string list list -> string list = <fun>
+val form_row1_cell_rec : 'a * 'a list list -> 'a list = <fun>
+val form_row1_cell : 'a * 'a list list -> 'a list = <fun>
+val is_member : 'a * 'a list -> bool = <fun>
+val equiv_rec : 'a list * 'a list -> bool = <fun>
+val equiv : 'a list * 'a list -> bool = <fun>
+val is_member_str : 'a * 'a list -> bool = <fun>
+val equiv_str_rec : 'a list * 'a list -> bool = <fun>
+val equiv_str : 'a list * 'a list -> bool = <fun>
+val row_equivalent_rec : 'a list list * 'a list list -> bool = <fun>
+val row_equivalent : 'a list list * 'a list list -> bool = <fun>
+val table_equivalent_rec : 'a list list list * 'a list list list -> bool =
+  <fun>
+val table_equivalent : 'a list list list * 'a list list list -> bool = <fun>
+val isUpperCase : char -> bool = <fun>
+val isLowerCase : char -> bool = <fun>
+val valid_production : string list -> bool = <fun>
+val valid_production_list_rec : string list list -> bool = <fun>
+val valid_production_list : string list list -> bool = <fun>
+#  get_table_values_cell ([1;3],sample_table);; 
+- : string list = ["11"]
+#  get_table_values_cell ([2;1],sample_table);;
+- : string list = ["12"]
+# cell_products[["X";"Y";"Z"];["A";"B";"C"]];;    
+- : string list = ["XA"; "XB"; "XC"; "YA"; "YB"; "YC"; "ZA"; "ZB"; "ZC"]
+# cell_products [["X";"Y";"Z"];[]];;
+- : string list = []
+# form_row1_cell ("b",productions);;
+- : string list = ["A"]
+# form_row1_cell ("c",productions);;
+- : string list = ["B"]
+# equiv([1],[1;1]);;
+- : bool = false
+# equiv([1;2;3;4],[4;3;2;1]);;
+- : bool = true
+#  row_equivalent(row1,row1mod);;
+- : bool = true
+#  row_equivalent(row1,row1);;   
+- : bool = true
+# table_equivalent(tablebook2,tablebook3);;
+- : bool = false
+# table_equivalent(tablebook2,tablebook2);;
+- : bool = true
+# valid_production prod3;;
+- : bool = true
+# valid_production prod4;;
+- : bool = true
+# valid_production prodb1;;
+- : bool = false
+# valid_production prodb3;;
+- : bool = false
+# valid_production_list prods1;;
+- : bool = true
+# valid_production_list prods5;;
+- : bool = false
