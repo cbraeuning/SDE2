@@ -12,6 +12,12 @@ let prodb2 = ["S"; "A"];;
 let prodb3 = ["AB"; "CD"];;
 let prodb4 = ["s"; "cAB"];;
 
+let prods1 = [prod1;prod2;prod3;prod4];;
+let prods2 = [prod1];;
+let prods3= [prod1;prod2;prod3;prodb4];;
+let prods4 = [prod1;prod2;prodb3;prod4];;
+let prods5 = [prod1;prodb2;prod3;prod4];;
+
 let row1 = [["A"]; ["A"]; ["B"; "C"]; ["B"; "C"]];;
 let row1mod = [["A"]; ["A"]; ["C"; "B"]; ["C"; "B"]];;
 let row1mod2 = [["A"]; ["A"]; ["C"; "C"]; ["B"; "B"]];;
@@ -101,7 +107,7 @@ let rec is_member(a,cb) =
 		false
 	else if  a = (List.hd cb) then
 		true
-	else is_member_int(a, List.tl cb);;
+	else is_member(a, List.tl cb);;
 
 let rec equiv_rec(ca,cb) =
 	if (ca = []) then
