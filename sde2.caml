@@ -12,6 +12,8 @@ let prodb2 = ["S"; "B"];;
 let prodb3 = ["ABC"; "CD"];;
 let prodb4 = ["s"; "Caa"];;
 
+let sample_table = [[["22"];["12"];["31"];["14"]];[["21"];["23"];["41"]];[["11"];["34"]];[["13"]]];;
+
 let prods1 = [prod1;prod2;prod3;prod4];;
 let prods2 = [prod1];;
 let prods3= [prod1;prod2;prod3;prodb4];;
