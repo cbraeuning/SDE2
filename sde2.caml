@@ -1,6 +1,6 @@
 (* Collin Braeuning - cbraeun 
-%% SDE1	- CYK Parse Tables *)
-
+%% SDE2	- OCAML CYK Parse Tables *)
+(*
 (* all productions (in CNF) here let is used for illustration *)
 let prod1 = ["S"; "AC"];;
 let prod2 = ["A"; "b"];;
@@ -43,7 +43,7 @@ let tablebook3 =
 [[["C"]; ["C"]; ["A"; "B"]; ["A"; "B"]];
 [["B"]; ["C"; "G"]; ["A"; "C"; "S"]]; [["B"; "C"]; ["C"; "S"; "B"]];
 [["S"; "A"; "B"; "A"]]];;
-
+*)
 (**
 Prototype: get_table_values_cell([i;j],table)
 Input(s): tuple of ([<column>;<row>], table)
