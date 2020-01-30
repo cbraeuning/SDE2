@@ -1,4 +1,6 @@
 Collin Braeuning - cbraeun 
+Robert Schalkoff Clemson Programming Systems 
+ECE 3520 SDE2
 SDE2m- OCAML CYK Parse Tables
 
 Pledge:
